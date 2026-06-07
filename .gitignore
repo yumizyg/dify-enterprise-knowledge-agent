@@ -7,13 +7,9 @@ credentials.json
 # 根目录 DSL 副本（正式文件在 dsl/ 目录）
 企业内部agent智能机器人.yml
 
-# 本地知识库原始文档（涉密，勿提交）
-企业内部资料/
+# 其他本地涉密文档（非本仓库示例库，勿提交）
 data/
 docs/private/
-*.pdf
-*.docx
-*.xlsx
 
 # 系统文件
 .DS_Store
