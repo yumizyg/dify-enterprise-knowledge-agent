@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="基于 Dify + OpenAI 的企业内部知识库 RAG Agent 在线体验。意图路由、查询改写、双库混合检索。" />
+  <title>企业内部知识库 Agent · 在线体验</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🤖</span>
+        <div>
+          <h1 class="brand-title">企业内部知识库 Agent</h1>
+          <p class="brand-sub">Dify RAG · 在线体验 Demo</p>
+        </div>
+      </div>
+      <nav class="header-links">
+        <a href="https://github.com/yumizyg/dify-enterprise-knowledge-agent" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/yumizyg/dify-enterprise-knowledge-agent#快速开始" target="_blank" rel="noopener">导入 DSL</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    <aside class="info-panel">
+      <section class="card">
+        <h2>项目简介</h2>
+        <p>
+          基于 <strong>Dify + OpenAI</strong> 搭建的企业内部智能问答助手，整合产品规格、成本定价、SOP 流程、部门制度等多类型资料，实现员工自助查询。
+        </p>
+        <p class="muted">
+          本页连接已发布的 Dify 工作流，供访客<strong>真实体验</strong>完整 RAG 链路。知识库内容为 AI 生成的<strong>虚拟示例数据</strong>。
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>工程化亮点</h2>
+        <ul class="feature-list">
+          <li><span class="tag">路由</span> 流程类 / 产品类双意图分流</li>
+          <li><span class="tag">改写</span> 省略主语与代词查询补全</li>
+          <li><span class="tag">检索</span> 向量 70% + 关键词 30% 混合召回</li>
+          <li><span class="tag">防幻觉</span> 严格 Context-only 作答约束</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>试试这些问题</h2>
+        <div class="sample-questions" id="sampleQuestions">
+          <button type="button" class="chip" data-q="新品开发上线流程的审批节点有哪些？">新品开发审批节点</button>
+          <button type="button" class="chip" data-q="FBA 入仓发货作业规程里质检标准是什么？">FBA 质检标准</button>
+          <button type="button" class="chip" data-q="UT-BAG-001 的外箱尺寸和 MOQ 是多少？">产品尺寸与 MOQ</button>
+          <button type="button" class="chip" data-q="东莞优途箱包厂的联系人邮箱是什么？">供应商联系方式</button>
+        </div>
+        <p class="hint">第二轮可追问：「它的 ASIN 呢？」体验多轮主语补全</p>
+      </section>
+    </aside>
+
+    <section class="chat-panel card" aria-label="对话体验区">
+      <div class="chat-header">
+        <div>
+          <h2 id="chatAppName">智能咨询助手</h2>
+          <p class="chat-status" id="chatStatus">正在连接服务…</p>
+        </div>
+        <button type="button" class="btn-ghost" id="newChatBtn" title="开始新对话">新对话</button>
+      </div>
+
+      <div id="embedContainer" class="embed-container hidden" aria-hidden="true">
+        <iframe id="difyEmbed" title="Dify 对话嵌入" loading="lazy"></iframe>
+      </div>
+
+      <div id="chatContainer" class="chat-container">
+        <div class="messages" id="messages" role="log" aria-live="polite"></div>
+
+        <div id="setupNotice" class="setup-notice hidden">
+          <strong>Demo 尚未配置 Dify 后端</strong>
+          <p>站点管理员需在 Netlify 环境变量中设置 <code>DIFY_API_KEY</code>（或 <code>DIFY_EMBED_URL</code>）。</p>
+          <p>获取方式：Dify 应用 → 发布 → API 访问 → 创建 API Key。</p>
+        </div>
+
+        <form class="composer" id="composerForm">
+          <textarea
+            id="messageInput"
+            rows="1"
+            placeholder="输入你的问题，例如：仓储管理制度里盘点频率是多少？"
+            maxlength="2000"
+            aria-label="输入消息"
+          ></textarea>
+          <button type="submit" class="btn-send" id="sendBtn" disabled aria-label="发送">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>示例数据均为 AI 生成的虚构内容 · 工作流 DSL 开源可复用</p>
+      <p>
+        <a href="https://github.com/yumizyg/dify-enterprise-knowledge-agent" target="_blank" rel="noopener">查看源码与部署文档</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/js/chat.js" type="module"></script>
+</body>
+</html>
