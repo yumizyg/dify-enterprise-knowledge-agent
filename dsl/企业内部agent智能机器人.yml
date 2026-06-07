@@ -1,0 +1,628 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: 企业内部agent智能机器人
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.4.2@21195ee1321849e0a7d4b3f6b2fd8c2be23ea6c7182e1b444ecc4c1711b52468
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1780564044046-source-1780564057460-target
+      selected: false
+      source: '1780564044046'
+      sourceHandle: source
+      target: '1780564057460'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: question-classifier
+      id: 1780564057460-2-1780564166503-target
+      source: '1780564057460'
+      sourceHandle: '2'
+      target: '1780564166503'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1780564166503-1-1780564216945-target
+      source: '1780564166503'
+      sourceHandle: '1'
+      target: '1780564216945'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1780564166503-2-1780564273599-target
+      source: '1780564166503'
+      sourceHandle: '2'
+      target: '1780564273599'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: knowledge-retrieval
+      id: 1780564216945-source-17805643040200-target
+      source: '1780564216945'
+      sourceHandle: source
+      target: '17805643040200'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: variable-aggregator
+      id: 17805643040200-source-1780564320131-target
+      source: '17805643040200'
+      sourceHandle: source
+      target: '1780564320131'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: variable-aggregator
+      id: 1780564273599-source-1780564320131-target
+      source: '1780564273599'
+      sourceHandle: source
+      target: '1780564320131'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1780564320131-source-1780564337614-target
+      source: '1780564320131'
+      sourceHandle: source
+      target: '1780564337614'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1780564337614-source-1780564395956-target
+      source: '1780564337614'
+      sourceHandle: source
+      target: '1780564395956'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1780564057460-1-17805643649740-target
+      source: '1780564057460'
+      sourceHandle: '1'
+      target: '17805643649740'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 17805643649740-source-llm-target
+      source: '17805643649740'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: llm-source-1780564395956-target
+      source: llm
+      sourceHandle: source
+      target: '1780564395956'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables: []
+      height: 71
+      id: '1780564044046'
+      position:
+        x: -208.05813300687925
+        y: 334.9762083690813
+      positionAbsolute:
+        x: -208.05813300687925
+        y: 334.9762083690813
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17805643649740'
+          - result
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 6
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 21447f90-eabf-45ab-82e6-9b6591f9d9d6
+          role: system
+          text: '# 角色：优途箱包企业内部智能咨询专员，面向公司内部员工答疑
+
+            ## 硬性约束
+
+            1. **作答唯一数据源：仅使用{{#context#}}，无匹配资料统一回复：暂无对应资料，请核对查询关键词后重新提问，严禁编造任何SOP规则、成本、尺寸、供应商、邮箱、工艺数据**；
+
+            2.【内部SOP/流程制度类】（立项规范、审批流程、SOP操作、公司制度、岗位职责）：条理分点作答，步骤清晰，保留审批人、执行人、节点时限等关键信息；
+
+            3. 员工多字段复合提问（如：产品+供应商电话），分别从产品文档、通讯录文档提取内容拼接完整答案；
+
+            4. 话术简洁正式、企业内部办公风格，剔除冗余废话，不生成无关科普内容；'
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 86
+      id: llm
+      position:
+        x: 739.2449130028322
+        y: 243.92335023472276
+      positionAbsolute:
+        x: 739.2449130028322
+        y: 243.92335023472276
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        classes:
+        - id: '1'
+          label: 企业内部流程
+          name: 用户的提问主要是涉及公司的内部流程文档，包括成本核算与定价管理办法、员工入职培训手册、亚马逊运营内部操作指南、新品开发上线流程、FBA入仓发货作业规程、来料质检标准作业程序、产品工艺与尺寸规格说明书、仓储管理制度
+        - id: '2'
+          label: 产品相关问题
+          name: 用户的提问主要直接涉及产品或工厂的，包括产品参数、产品ASIN、工厂、产品尺寸与包装规格、成本价目表、库存与仓储台账、供应商名录、员工通讯录
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          window:
+            enabled: true
+            size: 6
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - '1780564044046'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 176
+      id: '1780564057460'
+      position:
+        x: 49.98103898683985
+        y: 306.28763041855376
+      positionAbsolute:
+        x: 49.98103898683985
+        y: 306.28763041855376
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        classes:
+        - id: '1'
+          label: 需要补全
+          name: '用户的提问需要补全主语，比如提问缺失产品/工厂全称/ASIN，而是使用带代词（它、这款、此包），或是省略产品主体（如：多少钱、ASIN多少）； '
+        - id: '2'
+          label: 无需补全
+          name: 用户提问无需补全主语，或者用户提问完整写明产品/工厂名字，主体完整，原句可直接检索。
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - '1780564044046'
+        - sys.query
+        selected: false
+        title: 问题分类器 2
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 176
+      id: '1780564166503'
+      position:
+        x: 215.22950504106922
+        y: 543.0250615678854
+      positionAbsolute:
+        x: 215.22950504106922
+        y: 543.0250615678854
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 6
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-5.5
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 88bb7cfc-67ac-4c1a-8a00-cb743e665e1d
+          role: system
+          text: '用户的对话中出现了产品/工厂的模糊指代词，如「这款、它、该产品、此包」等模糊代词，或者直接忽略了产品词，请根据{{#context#}}，替换掉模糊代词，补全对应的产品全称、完整的子ASIN编码，输出一句完整精准的产品查询语句，仅输出改写后的问句，不要多余文字。
+
+
+            '
+        retry_config:
+          max_retries: 2
+          retry_enabled: true
+          retry_interval: 1000
+        selected: false
+        title: LLM 2
+        type: llm
+        vision:
+          enabled: false
+      height: 116
+      id: '1780564216945'
+      position:
+        x: 461.5977901604542
+        y: 465.21625552579735
+      positionAbsolute:
+        x: 461.5977901604542
+        y: 465.21625552579735
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - YtJUfWQclzngjbGsCKEK3vMQTsXUhZ1WwBQjIYqBcf7ml72wnN0N2pcH39XEBANi
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-small
+              embedding_provider_name: langgenius/openai/openai
+              vector_weight: 0.7
+            weight_type: customized
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1780564044046'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 88
+      id: '1780564273599'
+      position:
+        x: 582.4497655024209
+        y: 671.5369573833448
+      positionAbsolute:
+        x: 582.4497655024209
+        y: 671.5369573833448
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - YtJUfWQclzngjbGsCKEK3vMQTsXUhZ1WwBQjIYqBcf7ml72wnN0N2pcH39XEBANi
+        desc: ''
+        isInIteration: false
+        isInLoop: false
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-small
+              embedding_provider_name: langgenius/openai/openai
+              vector_weight: 0.7
+            weight_type: customized
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1780564044046'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 (1)
+        type: knowledge-retrieval
+      height: 88
+      id: '17805643040200'
+      position:
+        x: 739.2449130028322
+        y: 536.4030355217503
+      positionAbsolute:
+        x: 739.2449130028322
+        y: 536.4030355217503
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        output_type: array[object]
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '17805643040200'
+          - result
+        - - '1780564273599'
+          - result
+      height: 133
+      id: '1780564320131'
+      position:
+        x: 1069.4708649925042
+        y: 625.8003871445748
+      positionAbsolute:
+        x: 1069.4708649925042
+        y: 625.8003871445748
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1780564320131'
+          - output
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 6
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1
+          provider: langgenius/openai/openai
+        prompt_config:
+          jinja2_variables: []
+        prompt_template:
+        - edition_type: basic
+          id: e5d05306-12bf-4313-89f2-c2bffd4dd975
+          role: system
+          text: '# 角色：优途箱包企业内部智能咨询专员，面向公司内部员工答疑
+
+            ## 硬性约束
+
+            1. **作答唯一数据源：仅使用{{#context#}}，无匹配资料统一回复：暂无对应资料，请核对查询关键词后重新提问，严禁编造任何SOP规则、成本、尺寸、供应商、邮箱、工艺数据**；
+
+            2.负责产品数据和工厂类问题，主要包括（产品成本、尺寸、MOQ、供应商工厂信息、联系人邮箱、库存、定价规则）：数据原样摘抄，关键数字、邮箱、工厂名称精准还原，可按需整理简短表格；
+
+            3. 话术简洁正式、企业内部办公风格，剔除冗余废话，不生成无关科普内容；'
+        selected: false
+        title: LLM 3
+        type: llm
+        vision:
+          enabled: false
+      height: 86
+      id: '1780564337614'
+      position:
+        x: 986.3933543166654
+        y: 360.91934529916864
+      positionAbsolute:
+        x: 986.3933543166654
+        y: 360.91934529916864
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - j+W3ZrwyDvWQKN4ChxVG4T6Rtab3PiN4ur1LJxnlVZpYzdIn0SlTm8hq3FFDbUOn
+        desc: ''
+        isInIteration: false
+        isInLoop: false
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-small
+              embedding_provider_name: langgenius/openai/openai
+              vector_weight: 0.7
+            weight_type: customized
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1780564044046'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 (2)
+        type: knowledge-retrieval
+      height: 88
+      id: '17805643649740'
+      position:
+        x: 376.11582175899673
+        y: 262.1339218615945
+      positionAbsolute:
+        x: 376.11582175899673
+        y: 262.1339218615945
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '{{#llm.text#}}+{{#1780564337614.text#}}'
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 101
+      id: '1780564395956'
+      position:
+        x: 1241.0391719937193
+        y: 262.1339218615945
+      positionAbsolute:
+        x: 1241.0391719937193
+        y: 262.1339218615945
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: 311.67806363656706
+      y: 223.73128966863806
+      zoom: 0.6433324911798888
+  rag_pipeline_variables: []

@@ -1,0 +1,21 @@
+# 环境与密钥
+.env
+.env.*
+*.key
+credentials.json
+
+# 根目录 DSL 副本（正式文件在 dsl/ 目录）
+企业内部agent智能机器人.yml
+
+# 本地知识库原始文档（涉密，勿提交）
+企业内部资料/
+data/
+docs/private/
+*.pdf
+*.docx
+*.xlsx
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
